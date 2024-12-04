@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with Fine-Tuned GPT</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .input-area {
+            display: flex;
+            margin-top: 20px;
+        }
+        .input-area input {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            outline: none;
+        }
+        .input-area button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background: #007bff;
+            border: none;
+            border-radius: 4px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        .input-area button:hover {
+            background: #0056b3;
+        }
+        .response-area {
+            margin-top: 20px;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Chat with Fine-Tuned GPT</h1>
+        <div class="input-area">
+            <input type="text" id="userInput" placeholder="Type your message here...">
+            <button onclick="getResponse()">Send</button>
+        </div>
+        <div class="response-area" id="responseArea">
+            <p>GPT responses will appear here...</p>
+        </div>
+    </div>
+    <script>
+        function getResponse() {
+            const userInput = $('#userInput').val();
+            if (!userInput.trim()) {
+                alert('Please enter a message');
+                return;
+            }
+
+            $.ajax({
+                url: '/get_response',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ input_text: userInput }),
+                success: function(data) {
+                    $('#responseArea').html(`<p><strong>GPT:</strong> ${data.response}</p>`);
+                },
+                error: function(err) {
+                    $('#responseArea').html('<p style="color: red;">Error generating response. Please try again.</p>');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
