@@ -19,7 +19,7 @@ pip install -r requirements.txt
 # Installation
 Clone this repository:
 
-git clone https://github.com/username/transfer-learning-chatbot.git
+git clone https://github.com/batrapulkit/transfer-learning-chatbot.git
 
 cd transfer-learning-chatbot
 
