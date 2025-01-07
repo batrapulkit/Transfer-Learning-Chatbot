@@ -8,7 +8,7 @@ Transfer Learning: Fine-tuning a pretrained LLM (e.g., GPT-3 or GPT-4) to enhanc
 Contextual Awareness: The model can maintain context across multiple turns in the conversation.
 
 # Demo
-You can see a demonstration of the project in action through this link.
+You can see a demonstration of the project in action above.
 
 # Requirements
 Python 3.7 or later
